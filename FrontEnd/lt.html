@@ -20,29 +20,29 @@
     <div id="wai">
         <!-- 好友列表 -->
         <div id="list">
-            <div id="zhuzhanghu">
-                <div id="nicheng">
+            <div id="account">
+                <div id="account-information">
                     账号：<span id="nichengs">曦暮流年</span><br>
                     ID：<span id="zhanghao">3436528385</span>
                 </div>
-                <button id="jiahaoyou">+</button>
+                <button id="addFriend-but">+</button>
             </div>
             <ul id="friend">
             </ul>
         </div>
         <!-- 加好友 -->
-        <div class="jiahaoyou_ym">
+        <div class="addFriend-frame">
             <h2>加好友</h2>
-            <button id="gb" title="点击关闭">X</button>
+            <button id="close-addFriend" title="点击关闭">X</button>
             <div>
                 <input type="text" name="userName" id="userName" placeholder="请输入好友账号">
                 <button>搜索</button>
-                <div id="haoyouqingqiukuang">
-                    <div id="haoyoushenqingbiaoti">好友申请</div>
-                    <div id="HaoYouQingQiu">
+                <div id="friendApply">
+                    <div id="friendApplyTitle">好友申请</div>
+                    <div id="friendApplyContentFrame">
                         <div>
-                            <span class="qingqiumingcheng">张三</span>
-                            <button>同意申请</button>
+                            <span>张三</span>
+                            <button class="friendApplyContent-but">同意申请</button>
                         </div>
                     </div>
                 </div>
@@ -314,13 +314,13 @@
     <!-- 好友功能 -->
     <script>
         // 添加好友点击关闭
-        document.getElementById("jiahaoyou").onclick = function () {
-            document.getElementsByClassName("jiahaoyou_ym")[0].style.display = "block";
+        document.getElementById("addFriend-but").onclick = function () {
+            document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
         }
 
         // 点击错号关闭
-        document.querySelector(".jiahaoyou_ym>button").onclick = function () {
-            document.getElementsByClassName("jiahaoyou_ym")[0].style.display = "none";
+        document.querySelector(".addFriend-frame>button").onclick = function () {
+            document.getElementsByClassName("addFriend-frame")[0].style.display = "none";
         }
     </script>
 </body>
