@@ -11,7 +11,7 @@ axios({
     .then(function (response) {
         const json = response.data;
         if (json == "") {
-            // window.location.href = "/index.html"
+            window.location.href = "/index.html"
         }
         userNameId = json.id;
         addContent(json.userName, json.id);
