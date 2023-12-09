@@ -36,27 +36,22 @@
             <button id="close-addFriend" title="点击关闭">X</button>
             <div>
                 <input type="text" name="userName" id="userName" placeholder="请输入好友账号">
-                <button>搜索</button>
+                <button id="searchFriend">搜索</button>
                 <div id="friendApply">
                     <div id="friendRequest">
                         <div id="friendApplyTitle">好友申请</div>
-                        <div id="friendApplyContentFrame">
-                            <div>
-                                <span>张三</span>
-                                <button class="friendApplyContent-but">同意申请</button>
-                            </div>
-                        </div>
+                        <div id="friendApplyContentFrame"></div>
                     </div>
                     <div id="requestFriend">
                         <button id="close-requestFriend" title="点击关闭">X</button>
                         <div id="friendInformationDisplay">
                             <p>
                                 <span class="friendInformationDisplayLeft">账号：</span>
-                                <span class="friendInformationDisplayRight">张三</span>
+                                <span class="friendInformationDisplayRight" id="requestFriendName"></span>
                             </p>
                             <p>
                                 <span class="friendInformationDisplayLeft">ID：</span>
-                                <span class="friendInformationDisplayRight">43</span>
+                                <span class="friendInformationDisplayRight" id="requestFriendID"></span>
                             </p>
                         </div>
                         <div id="greetings">
@@ -76,7 +71,7 @@
                 <form>
                     <textarea name="input_text" id="text_con" style="resize: none; outline: 0 none;"
                         placeholder="这里输入内容"></textarea>
-                    <input type="button" onclick="faSong()" value="发送">
+                    <input type="button" onclick="faSong(true,)" value="发送">
                 </form>
             </div>
         </div>
@@ -86,16 +81,100 @@
     <script>
         // 现在是在谁的聊天框
         var text_haoyou_id = null;
+        var userNameId = null;
         // 计时器
         var intervalId;
     </script>
 
     <!-- 好友功能 -->
     <script>
-        // 添加好友点击打开
+        // 提交添加好友申请
+        document.getElementById("greetings-but").onclick = function () {
+            // 请求好友添加
+            axios.post("https://web.the-stars-like-dust.top/ins/friendRequest", {
+                id1: userNameId,
+                id2: document.getElementById("requestFriendID").innerHTML,
+                text: document.getElementById("greetingsText").value
+            })
+                // 相应成功并返回数据
+                .then(function (records) {
+                    if (records.data == 1) {
+                        showPrompt("发送好友申请成功", "greenyellow", 3000);
+                        // **************************************
+                    } else {
+                        showPrompt("发送好友申请失败", "red", 3000);
+                    }
+                })
+                // 相应失败
+                .catch(function (error) {
+                    console.log("添加好友请求失败");
+                })
+        }
+
+        // 点击搜索进行搜索好友添加
+        document.getElementById("searchFriend").onclick = function () {
+            // 发送请求要申请添加好友的信息
+            axios.post("https://web.the-stars-like-dust.top/sel/queryUser", {
+                name: document.getElementById("userName").value,
+                inquirerID: userNameId
+            })
+                // 返回响应成功好友信息
+                .then(function (response) {
+                    let rdata = response.data;
+                    if (rdata == "") {
+                        showPrompt("好友不存在", "red", 3000);
+                    } else if (rdata.id == null) {
+                        showPrompt("已添加该好友", "red", 3000);
+                    } else {
+                        document.getElementById("requestFriendName").innerHTML = rdata.userName;
+                        document.getElementById("requestFriendID").innerHTML = rdata.id;
+                        document.getElementById("requestFriend").style.display = 'block';
+                    }
+                })
+
+                // 返回响应是失败
+                .catch(function (error) {
+                    console.log("请求查询好友的信息");
+                })
+        }
+
+
+        // 同意或者拒绝好友申请
+        var trueFalseFriendRequest = function (off, id) {
+            axios.post("https://web.the-stars-like-dust.top/ins/FriendRequestAction", {
+                pid: userNameId,
+                vid: id,
+                action: off
+            })
+        }
+        // 添加好友点击打开并发送请求有谁向我发送好友申请
         document.getElementById("addFriend-but").onclick = function () {
             document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
+
+            // 请求都是有谁向我发送数据
+            axios.post("https://web.the-stars-like-dust.top/sel/queryFriendRequest", {
+                id: userNameId
+            })
+                // 执行成功渲染请求向我添加好友
+                .then(function (response) {
+                    let rdata = response.data;
+                    let dgid = document.getElementById("friendApplyContentFrame");
+                    for (let i = 0; i < rdata.length; i++) {
+                        dgid.innerHTML +=
+                            '<div>' +
+                            '<span>' + rdata[i].pUsers.userName + '</span>' +
+                            '<button class="friendApplyContent-but" onclick="trueFalseFriendRequest(true,' + rdata[i].pUsers.id + ')">同意</button>' +
+                            '<button class="friendApplyContent-but" onclick="trueFalseFriendRequest(flase,' + rdata[i].pUsers.id + ')">拒绝</button>' +
+                            '</div>'
+                    }
+                })
+
+                // 请求向我添加好友失败
+                .catch(function (error) {
+                    console.log("请求向我添加好友失败");
+                })
         }
+
 
         // 点击错号关闭添加好友
         document.querySelector("#close-addFriend").onclick = function () {

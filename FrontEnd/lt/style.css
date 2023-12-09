@@ -259,6 +259,7 @@ body {
     width: 395.5px;
     height: 195.5px;
     background-color: #7faeff;
+    display: none;
 }
 
 #close-requestFriend {

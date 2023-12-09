@@ -13,6 +13,7 @@ axios({
         if (json == "") {
             // window.location.href = "/index.html"
         }
+        userNameId = json.id;
         addContent(json.userName, json.id);
     })
 
