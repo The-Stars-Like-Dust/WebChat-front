@@ -38,11 +38,31 @@
                 <input type="text" name="userName" id="userName" placeholder="请输入好友账号">
                 <button>搜索</button>
                 <div id="friendApply">
-                    <div id="friendApplyTitle">好友申请</div>
-                    <div id="friendApplyContentFrame">
-                        <div>
-                            <span>张三</span>
-                            <button class="friendApplyContent-but">同意申请</button>
+                    <div id="friendRequest">
+                        <div id="friendApplyTitle">好友申请</div>
+                        <div id="friendApplyContentFrame">
+                            <div>
+                                <span>张三</span>
+                                <button class="friendApplyContent-but">同意申请</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="requestFriend">
+                        <button id="close-requestFriend" title="点击关闭">X</button>
+                        <div id="friendInformationDisplay">
+                            <p>
+                                <span class="friendInformationDisplayLeft">账号：</span>
+                                <span class="friendInformationDisplayRight">张三</span>
+                            </p>
+                            <p>
+                                <span class="friendInformationDisplayLeft">ID：</span>
+                                <span class="friendInformationDisplayRight">43</span>
+                            </p>
+                        </div>
+                        <div id="greetings">
+                            <textarea name="greetings" id="greetingsText" placeholder="请输入问候语"
+                                style="resize: none; outline: 0 none;"></textarea><br>
+                            <button id="greetings-but">提交申请</button>
                         </div>
                     </div>
                 </div>
@@ -70,259 +90,25 @@
         var intervalId;
     </script>
 
-    <!-- 消息发送接受 -->
-    <script>
-        // 发送消息
-        var faSong = function () {
-            let _test = document.getElementById("text_con").value;
-            document.getElementById("text_con").value = "";
-            // 发送消息请求
-            axios.post("https://web.the-stars-like-dust.top/ins/message", {
-                withCredentials: true,
-                id1: document.getElementById("zhanghao").innerHTML,
-                id2: text_haoyou_id,
-                text: _test
-            })
-                // 执行成功调用渲染好友向我聊天记录函数
-                .then(function (response) {
-                    // 发送成功
-                    showPrompt("发送成功", "greenyellow", 500);
-                })
-
-                // 发送失败
-                .catch(function (error) {
-                    showPrompt("发送失败未能请求到服务器", "red", 1000);
-                })
-        }
-
-        // 计时器 —— 用于接受聊天记录请求
-        var jsq = function () {
-            intervalId = setInterval(function () {
-                // 发送请求用于获取一个时间以下我向好友发送的聊天记录
-                axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
-                    withCredentials: true,
-                    id1: document.getElementById("zhanghao").innerHTML,
-                    id2: text_haoyou_id,
-                    time: document.getElementsByClassName("me")[document.getElementsByClassName("me").length - 1].getElementsByClassName("datetime")[0].innerHTML
-                })
-                    // 成功
-                    .then(function (response1) {
-                        // 定义两个变量
-                        let data1 = response1.data;
-                        let data2 = null;
-
-                        // 发送请求用于获取一个时间以下好友向我发送的聊天记录
-                        axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
-                            withCredentials: true,
-                            id1: text_haoyou_id,
-                            id2: document.getElementById("zhanghao").innerHTML,
-                            time: document.getElementsByClassName("you")[document.getElementsByClassName("you").length - 1].getElementsByClassName("datetime")[0].innerHTML
-                        })
-                            // 成功
-                            .then(function (response2) {
-                                // 把数据链接在一起
-                                data2 = response2.data;
-                                for (let i = 0; i < data2.length; i++) {
-                                    data1[data1.length] = data2[i];
-                                }
-                                // 渲染数据
-                                if (data1.length != 0) {
-                                    chattingRecordsXR(data1, document.getElementById("zhanghao").innerHTML);
-                                }
-                            })
-
-                            .catch(function (error) {
-                                console.log("好友向我错误");
-                            })
-                    })
-
-                    .catch(function (error) {
-                        console.log("我向好友错误");
-                    })
-            }, 1000); // 每隔 1 秒执行一次
-        }
-    </script>
-
-    <!-- 渲染聊天记录 -->
-    <script>
-        // 渲染聊天记录
-        var chattingRecordsXR = function (data, userNameId) {
-            // 按照时间排序
-            data.sort(function (a, b) {
-                return b.time > a.time ? -1 : 1
-            })
-
-            // 渲染页面
-            for (let i = 0; i < data.length; i++) {
-                let info = document.getElementById("info");
-                let me_you = null;
-                if (data[i].user1.id == userNameId) {
-                    me_you = "me";
-                } else {
-                    me_you = "you";
-                }
-                info.innerHTML +=
-                    '<div class="' + me_you + '">' +
-                    '<p class="datetime">' + data[i].time + '</p>' +
-                    '<p class="text">' + data[i].text + '</p>' +
-                    '</div>'
-            }
-
-            // 聊天记录滑动到最底部
-            let scrollAera = document.getElementById("info");
-            scrollAera.scrollTop = scrollAera.clientHeight * 5;
-        }
-
-        // 获取聊天记录
-        var chattingRecords = function (userNameId, user2_id) {
-            // 请求我向好友发送的聊天数据
-            axios.post("https://web.the-stars-like-dust.top/sel/messages", {
-                withCredentials: true,
-                id1: userNameId,
-                id2: user2_id
-            })
-                // 执行成功调用渲染好友聊天记录函数
-                .then(function (response1) {
-                    let data1 = response1.data;
-                    let data2 = null;
-                    // 请求好友向我发送的聊天数据
-                    axios.post("https://web.the-stars-like-dust.top/sel/messages", {
-                        withCredentials: true,
-                        id1: user2_id,
-                        id2: userNameId
-                    })
-                        // 执行成功调用渲染好友向我聊天记录函数
-                        .then(function (response2) {
-                            data2 = response2.data;
-                            for (let i = 0; i < data2.length; i++) {
-                                data1[data1.length] = data2[i];
-                            }
-
-                            // 清空消息列表
-                            document.getElementById("info").remove();
-                            document.getElementById("information").innerHTML =
-                                '<div id="info"> </div>' +
-                                '<div id="input_from">' +
-                                '<form>' +
-                                '<textarea name="input_text" id="text_con" style="resize: none; outline: 0 none;"' +
-                                'placeholder="这里输入内容"></textarea>' +
-                                '<input type="button" onclick="faSong()" value="发送">' +
-                                '</form>' +
-                                '</div >'
-
-                            // 调用函数渲染页面
-                            chattingRecordsXR(data1, userNameId);
-                            // 好友ID
-                            text_haoyou_id = user2_id;
-                            // 关闭计时器
-                            clearInterval(intervalId);
-                            // 开启计时器
-                            jsq();
-                        })
-
-                        // 好友向我聊天记录获取失败进行提示信息
-                        .catch(function (error) {
-                            console.log("请求好友向我聊天记录错误");
-                        })
-
-
-                })
-
-                // 好友聊天记录获取失败进行提示信息
-                .catch(function (error) {
-                    console.log("请求我向好友聊天记录错误");
-                })
-        }
-    </script>
-
-    <!-- 在好友列表出列出好友 -->
-    <script>
-        // 列出好友列表并注册点击事件
-        var friendList = function (friendList, userNameId) {
-            // 绑定ul标签
-            let listAdd = document.getElementById("friend");
-            // 先把好友列表渲染上
-            for (let i = 0; i < friendList.length; i++) {
-                listAdd.innerHTML += '<li class="haoyou-li" id="id' + friendList[i].id + '">' + friendList[i].userName + '</li>';
-            }
-            // 吧所有的好友进行点击事件注册
-            for (let i = 0; i < friendList.length; i++) {
-                document.getElementById("id" + friendList[i].id).addEventListener('click', function () {
-                    chattingRecords(userNameId, friendList[i].id)
-                    document.getElementById("information").style.display = "block";
-
-                })
-            }
-        }
-
-        // 像数据里面添加内容 账号，
-        var addContent = function (userName, userNameID) {
-            // 更新账号
-            document.getElementById("nichengs").innerText = userName;
-            document.getElementById("zhanghao").innerText = userNameID;
-            // 请求好友数据
-            axios({
-                method: "post",
-                url: "https://web.the-stars-like-dust.top/sel/friends",
-                data: {
-                    withCredentials: true,
-                    id: userNameID
-                }
-            })
-                // 执行成功调用渲染好友列表函数
-                .then(function (response) {
-                    friendList(response.data, userNameID);
-                })
-
-                // 好友获取失败进行提示信息
-                .catch(function (error) {
-                    console.log("请求好友错误");
-                })
-
-            // 显示界面
-            document.getElementById("dengdai").style.display = "none";
-            document.getElementById("wai").style.display = "block";
-        }
-    </script>
-
-    <!-- 获取账号 -->
-    <script>
-        // 发送请求用于使用uuid获取账号
-        axios({
-            method: "post",
-            url: "https://web.the-stars-like-dust.top/sel/uuid",
-            data: {
-                withCredentials: true,
-                uuid: window.location.search.split('=')[1]
-            }
-        })
-            // 执行成功调用添加内容函数
-            .then(function (response) {
-                const json = response.data;
-                if (json == "") {
-                    window.location.href = "/index.html"
-                }
-                addContent(json.userName, json.id);
-            })
-
-            // 登录失败进行提示信息
-            .catch(function (error) {
-                console.log("请求uuid错误");
-            })
-    </script>
-
     <!-- 好友功能 -->
     <script>
-        // 添加好友点击关闭
+        // 添加好友点击打开
         document.getElementById("addFriend-but").onclick = function () {
             document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
         }
 
-        // 点击错号关闭
-        document.querySelector(".addFriend-frame>button").onclick = function () {
+        // 点击错号关闭添加好友
+        document.querySelector("#close-addFriend").onclick = function () {
             document.getElementsByClassName("addFriend-frame")[0].style.display = "none";
         }
+
+        // 点击错号关闭我申请好友页面
+        document.querySelector("#close-requestFriend").onclick = function () {
+            document.getElementById("requestFriend").style.display = "none";
+        }
     </script>
+    <script src="./lt/records.js"></script>
+    <script src="./lt/account.js"></script>
 </body>
 
 </html>

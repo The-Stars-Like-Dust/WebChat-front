@@ -215,6 +215,7 @@ body {
     margin: 10px auto;
     border: 3px dashed #a18cd1;
     border-radius: 10px;
+    position: relative;
 }
 
 #friendApplyTitle {
@@ -249,4 +250,68 @@ body {
     height: 25px;
     background-color: #7faeff;
     border-color: #a782ff;
+}
+
+#requestFriend {
+    position: absolute;
+    top: 0;
+    border-radius: 8px;
+    width: 395.5px;
+    height: 195.5px;
+    background-color: #7faeff;
+}
+
+#close-requestFriend {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: #00000000;
+    border: none;
+    color: red;
+    font-size: 25px;
+}
+
+#friendInformationDisplay {
+    border-bottom: 1px solid #000;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    text-align: left;
+    width: 300px;
+    height: 45px;
+}
+
+.friendInformationDisplayLeft {
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+}
+
+.friendInformationDisplayRight {
+    display: inline-block;
+    text-align: left;
+    width: 243px;
+}
+
+#greetings {
+    width: 80%;
+    margin: auto;
+}
+
+#greetingsText {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 60px;
+    background-color: #ffffff73;
+}
+
+#greetings-but {
+    width: 100%;
+    background-color: #a18cd1;
+    border-color: #a782ff;
+    border-radius: 10px;
 }
