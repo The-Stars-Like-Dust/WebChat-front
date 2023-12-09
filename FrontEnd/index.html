@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>登录&注册</title>
+    <link rel="stylesheet" href="./index/style.css"><input type="hidden" id="_w_simile" data-inspect-config="3">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/tanchuang.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="welcome">
+            <div class="pinkbox">
+                <div class="signup nodisplay">
+                    <h1>注册</h1>
+                    <form>
+                        <input type="text" placeholder="用户名" id="z_zh">
+                        <input type="password" placeholder="密码" id="z_mm">
+                    </form>
+                    <button class="button submit" onclick="zcBut()">创建账号</button>
+                </div>
+                <div class="signin">
+                    <h1>登录</h1>
+                    <form class="more-padding">
+                        <input type="text" placeholder="用户名" id="d_zh">
+                        <input type="password" placeholder="密码" id="d_mm">
+                    </form>
+                    <button class="button submit" onclick="dlBut()">登录</button>
+                </div>
+            </div>
+            <div class="leftbox">
+                <h2 class="title"><span>BLOOM</span>&amp;<br>BOUQUET</h2>
+                <p class="desc">选择你最喜欢的<span>鲜花</span></p><img class="flower smaller" src="./index/1.jpg"
+                    alt="1357d638624297b" border="0">
+                <p class="account">已经有账号了?</p><button class="button" id="signin">登录</button>
+            </div>
+            <div class="rightbox">
+                <h2 class="title"><span>BLOOM</span>&amp;<br>BOUQUET</h2>
+                <p class="desc">选择你最喜欢的<span>鲜花</span></p><img class="flower" src="./index/2.jpg">
+                <p class="account">还没有账号?</p><button class="button" id="signup">注册</button>
+            </div>
+        </div>
+    </div>
+    <script src="./index/script.js"></script>
+</body>
+
+</html>
