@@ -1,7 +1,7 @@
 // 发送请求用于使用uuid获取账号
 axios({
     method: "post",
-    url: "https://web.the-stars-like-dust.top/sel/uuid",
+    url: "https://39.98.109.91/sel/uuid",
     data: {
         withCredentials: true,
         uuid: window.location.search.split('=')[1]
@@ -49,7 +49,7 @@ var addContent = function (userName, userNameID) {
     // 请求好友数据
     axios({
         method: "post",
-        url: "https://web.the-stars-like-dust.top/sel/friends",
+        url: "https://39.98.109.91/sel/friends",
         data: {
             withCredentials: true,
             id: userNameID

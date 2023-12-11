@@ -31,7 +31,7 @@ var chattingRecordsXR = function (data, userNameId) {
 // 获取聊天记录
 var chattingRecords = function (userNameId, user2_id) {
     // 请求我向好友发送的聊天数据
-    axios.post("https://web.the-stars-like-dust.top/sel/messages", {
+    axios.post("https://39.98.109.91/sel/messages", {
         withCredentials: true,
         id1: userNameId,
         id2: user2_id
@@ -41,7 +41,7 @@ var chattingRecords = function (userNameId, user2_id) {
             let data1 = response1.data;
             let data2 = null;
             // 请求好友向我发送的聊天数据
-            axios.post("https://web.the-stars-like-dust.top/sel/messages", {
+            axios.post("https://39.98.109.91/sel/messages", {
                 withCredentials: true,
                 id1: user2_id,
                 id2: userNameId
@@ -97,7 +97,7 @@ var faSong = function () {
     let _test = document.getElementById("text_con").value;
     document.getElementById("text_con").value = "";
     // 发送消息请求
-    axios.post("https://web.the-stars-like-dust.top/ins/message", {
+    axios.post("https://39.98.109.91/ins/message", {
         withCredentials: true,
         id1: document.getElementById("zhanghao").innerHTML,
         id2: text_haoyou_id,
@@ -122,7 +122,7 @@ var faSong = function () {
 var jsq = function () {
     intervalId = setInterval(function () {
         // 发送请求用于获取一个时间以下我向好友发送的聊天记录
-        axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
+        axios.post("https://39.98.109.91/sel/messages/time", {
             withCredentials: true,
             id1: document.getElementById("zhanghao").innerHTML,
             id2: text_haoyou_id,
@@ -135,7 +135,7 @@ var jsq = function () {
                 let data2 = null;
 
                 // 发送请求用于获取一个时间以下好友向我发送的聊天记录
-                axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
+                axios.post("https://39.98.109.91/sel/messages/time", {
                     withCredentials: true,
                     id1: text_haoyou_id,
                     id2: document.getElementById("zhanghao").innerHTML,

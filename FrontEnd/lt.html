@@ -91,7 +91,7 @@
         // 提交添加好友申请
         document.getElementById("greetings-but").onclick = function () {
             // 请求好友添加
-            axios.post("https://web.the-stars-like-dust.top/ins/friendRequest", {
+            axios.post("https://39.98.109.91/ins/friendRequest", {
                 id1: userNameId,
                 id2: document.getElementById("requestFriendID").innerHTML,
                 text: document.getElementById("greetingsText").value
@@ -115,7 +115,7 @@
         // 点击搜索进行搜索好友添加
         document.getElementById("searchFriend").onclick = function () {
             // 发送请求要申请添加好友的信息
-            axios.post("https://web.the-stars-like-dust.top/sel/queryUser", {
+            axios.post("https://39.98.109.91/sel/queryUser", {
                 name: document.getElementById("userName").value,
                 inquirerID: userNameId
             })
@@ -145,7 +145,7 @@
         // 同意或者拒绝好友申请
         var trueFalseFriendRequest = function (off, id) {
             // 发送请求
-            axios.post("https://web.the-stars-like-dust.top/ins/FriendRequestAction", {
+            axios.post("https://39.98.109.91/ins/FriendRequestAction", {
                 pid: userNameId,
                 vid: id,
                 action: off
@@ -164,7 +164,7 @@
             document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
 
             // 请求都是有谁向我发送数据
-            axios.post("https://web.the-stars-like-dust.top/sel/queryFriendRequest", {
+            axios.post("https://39.98.109.91/sel/queryFriendRequest", {
                 id: userNameId
             })
                 // 执行成功渲染请求向我添加好友
