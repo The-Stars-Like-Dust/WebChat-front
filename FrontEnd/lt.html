@@ -108,7 +108,7 @@
         // 点击搜索进行搜索好友添加
         document.getElementById("searchFriend").onclick = function () {
             // 发送请求要申请添加好友的信息
-            axios.post("https://web.the-stars-like-dust.top/sel/queryUser", {
+            axios.post(AjaxURL + "/sel/queryUser", {
                 name: document.getElementById("userName").value,
                 inquirerID: userNameId
             })
