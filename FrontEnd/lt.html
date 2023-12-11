@@ -8,6 +8,7 @@
     <script src="./js/axios.js"></script>
     <link rel="stylesheet" href="./lt/style.css">
     <script src="./js/tanchuang.js"></script>
+    <script src="./js/resource.js"></script>
 </head>
 
 <body>
@@ -71,27 +72,19 @@
                 <form>
                     <textarea name="input_text" id="text_con" style="resize: none; outline: 0 none;"
                         placeholder="这里输入内容"></textarea>
-                    <input type="button" onclick="faSong(true,)" value="发送">
+                    <input type="button" onclick="faSong()" value="发送">
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- 全局变量 -->
-    <script>
-        // 现在是在谁的聊天框
-        var text_haoyou_id = null;
-        var userNameId = null;
-        // 计时器
-        var intervalId;
-    </script>
 
     <!-- 好友功能 -->
     <script>
         // 提交添加好友申请
         document.getElementById("greetings-but").onclick = function () {
             // 请求好友添加
-            axios.post("https://web.the-stars-like-dust.top/ins/friendRequest", {
+            axios.post(AjaxURL + "/ins/friendRequest", {
                 id1: userNameId,
                 id2: document.getElementById("requestFriendID").innerHTML,
                 text: document.getElementById("greetingsText").value
@@ -115,7 +108,7 @@
         // 点击搜索进行搜索好友添加
         document.getElementById("searchFriend").onclick = function () {
             // 发送请求要申请添加好友的信息
-            axios.post("https://web.the-stars-like-dust.top/sel/queryUser", {
+            axios.post(AjaxURL + "/sel/queryUser", {
                 name: document.getElementById("userName").value,
                 inquirerID: userNameId
             })
@@ -143,42 +136,70 @@
 
 
         // 同意或者拒绝好友申请
-        var trueFalseFriendRequest = function (off, id) {
+        var trueFalseFriendRequest = function (off, id, obj) {
             // 发送请求
-            axios.post("https://web.the-stars-like-dust.top/ins/FriendRequestAction", {
+            axios.post(AjaxURL + "/ins/FriendRequestAction", {
                 pid: userNameId,
                 vid: id,
                 action: off
             })
                 // 成功
                 .then(function (response) {
-
+                    if (off) {
+                        addhaoyouList();
+                    }
                 })
                 // 失败 进行报错
                 .catch(function (error) {
                     console.log("发送结果失败，请重请求");
                 })
         }
+        // 里面存放的是申请好友的名称
+        var haoyouListTable = [];
         // 添加好友点击打开并发送请求有谁向我发送好友申请
         document.getElementById("addFriend-but").onclick = function () {
             document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
-
+            document.getElementById("friendApplyContentFrame").innerHTML = "";
+            qingqiuhaoyouqingqiu();
+            haoyoushenqingfor();
+        }
+        // 请求好友向我发送的好友申请
+        var qingqiuhaoyouqingqiu = function () {
             // 请求都是有谁向我发送数据
-            axios.post("https://web.the-stars-like-dust.top/sel/queryFriendRequest", {
+            axios.post(AjaxURL + "/sel/queryFriendRequest", {
                 id: userNameId
             })
                 // 执行成功渲染请求向我添加好友
                 .then(function (response) {
                     let rdata = response.data;
                     let dgid = document.getElementById("friendApplyContentFrame");
-                    dgid.innerHTML = "";
                     for (let i = 0; i < rdata.length; i++) {
-                        dgid.innerHTML +=
-                            '<div>' +
-                            '<span>' + rdata[i].pUsers.userName + '</span>' +
-                            '<button class="friendApplyContent-but" onclick="trueFalseFriendRequest(true,' + rdata[i].pUsers.id + ')">同意</button>' +
-                            '<button class="friendApplyContent-but" onclick="trueFalseFriendRequest(false,' + rdata[i].pUsers.id + ')">拒绝</button>' +
-                            '</div>'
+                        if (!(haoyouListTable.indexOf(rdata[i].pUsers.userName) >= 0)) {
+                            haoyouListTable[haoyouListTable.length] = rdata[i].pUsers.userName;
+                            let div = document.createElement("div");
+                            let span = document.createElement("span");
+                            let but1 = document.createElement("button");
+                            let but2 = document.createElement("button");
+
+                            span.textContent = rdata[i].pUsers.userName;
+                            but1.className = "friendApplyContent-but";
+                            but1.textContent = "同意";
+                            but1.addEventListener('click', function () {
+                                trueFalseFriendRequest(true, rdata[i].pUsers.id);
+                                div.remove();
+                            })
+                            but2.className = "friendApplyContent-but";
+                            but2.textContent = "拒绝";
+                            but2.addEventListener('click', function () {
+                                trueFalseFriendRequest(false, rdata[i].pUsers.id);
+                                div.remove();
+                            })
+
+                            div.appendChild(span);
+                            div.appendChild(but1);
+                            div.appendChild(but2);
+                            dgid.appendChild(div);
+                        }
                     }
                 })
 
@@ -187,11 +208,18 @@
                     console.log("请求向我添加好友失败");
                 })
         }
-
+        // 计时器 —— 循环请求好友申请信息
+        var haoyoushenqingfor = function () {
+            intervalAddhaoyou = setInterval(() => {
+                qingqiuhaoyouqingqiu();
+            }, 2000);
+        }
 
         // 点击错号关闭添加好友
         document.querySelector("#close-addFriend").onclick = function () {
             document.getElementsByClassName("addFriend-frame")[0].style.display = "none";
+            // 关闭计时器
+            clearInterval(intervalAddhaoyou);
         }
 
         // 点击错号关闭我申请好友页面

@@ -13,7 +13,7 @@ $("#signin").click(function () {
 
 // 登录模块
 var dlBut = function () {
-    axios.post("https://web.the-stars-like-dust.top/sel/users", {
+    axios.post(AjaxURL + "/sel/users", {
         withCredentials: true,
         userName: document.getElementById("d_zh").value,
         password: document.getElementById("d_mm").value
@@ -38,7 +38,7 @@ var dlBut = function () {
 
 // 注册模块
 var zcBut = function () {
-    axios.post("https://web.the-stars-like-dust.top/ins/user", {
+    axios.post(AjaxURL + "/ins/user", {
         userName: document.getElementById("z_zh").value,
         password: document.getElementById("z_mm").value
     })

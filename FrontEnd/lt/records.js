@@ -1,5 +1,5 @@
 // 渲染聊天记录
-var chattingRecordsXR = function (data, userNameId) {
+var chattingRecordsXR = function (data) {
     // 按照时间排序
     data.sort(function (a, b) {
         return b.time > a.time ? -1 : 1
@@ -29,9 +29,9 @@ var chattingRecordsXR = function (data, userNameId) {
 
 
 // 获取聊天记录
-var chattingRecords = function (userNameId, user2_id) {
+var chattingRecords = function (user2_id) {
     // 请求我向好友发送的聊天数据
-    axios.post("https://web.the-stars-like-dust.top/sel/messages", {
+    axios.post(AjaxURL + "/sel/messages", {
         withCredentials: true,
         id1: userNameId,
         id2: user2_id
@@ -41,7 +41,7 @@ var chattingRecords = function (userNameId, user2_id) {
             let data1 = response1.data;
             let data2 = null;
             // 请求好友向我发送的聊天数据
-            axios.post("https://web.the-stars-like-dust.top/sel/messages", {
+            axios.post(AjaxURL + "/sel/messages", {
                 withCredentials: true,
                 id1: user2_id,
                 id2: userNameId
@@ -66,7 +66,7 @@ var chattingRecords = function (userNameId, user2_id) {
                         '</div >'
 
                     // 调用函数渲染页面
-                    chattingRecordsXR(data1, userNameId);
+                    chattingRecordsXR(data1);
                     // 好友ID
                     text_haoyou_id = user2_id;
                     // 关闭计时器
@@ -97,9 +97,9 @@ var faSong = function () {
     let _test = document.getElementById("text_con").value;
     document.getElementById("text_con").value = "";
     // 发送消息请求
-    axios.post("https://web.the-stars-like-dust.top/ins/message", {
+    axios.post(AjaxURL + "/ins/message", {
         withCredentials: true,
-        id1: document.getElementById("zhanghao").innerHTML,
+        id1: userNameId,
         id2: text_haoyou_id,
         text: _test
     })
@@ -122,9 +122,9 @@ var faSong = function () {
 var jsq = function () {
     intervalId = setInterval(function () {
         // 发送请求用于获取一个时间以下我向好友发送的聊天记录
-        axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
+        axios.post(AjaxURL + "/sel/messages/time", {
             withCredentials: true,
-            id1: document.getElementById("zhanghao").innerHTML,
+            id1: userNameId,
             id2: text_haoyou_id,
             time: document.getElementsByClassName("me")[document.getElementsByClassName("me").length - 1].getElementsByClassName("datetime")[0].innerHTML
         })
@@ -135,10 +135,10 @@ var jsq = function () {
                 let data2 = null;
 
                 // 发送请求用于获取一个时间以下好友向我发送的聊天记录
-                axios.post("https://web.the-stars-like-dust.top/sel/messages/time", {
+                axios.post(AjaxURL + "/sel/messages/time", {
                     withCredentials: true,
                     id1: text_haoyou_id,
-                    id2: document.getElementById("zhanghao").innerHTML,
+                    id2: userNameId,
                     time: document.getElementsByClassName("you")[document.getElementsByClassName("you").length - 1].getElementsByClassName("datetime")[0].innerHTML
                 })
                     // 成功
@@ -150,7 +150,7 @@ var jsq = function () {
                         }
                         // 渲染数据
                         if (data1.length != 0) {
-                            chattingRecordsXR(data1, document.getElementById("zhanghao").innerHTML);
+                            chattingRecordsXR(data1);
                         }
                     })
 
