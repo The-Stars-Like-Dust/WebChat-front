@@ -27,7 +27,8 @@ var chattingRecordsXR = function (data) {
 }
 
 
-
+// 用于判定不重复开启计时器
+var jsqid = -1;
 // 获取聊天记录
 var chattingRecords = function (user2_id) {
     // 请求我向好友发送的聊天数据
@@ -69,10 +70,14 @@ var chattingRecords = function (user2_id) {
                     chattingRecordsXR(data1);
                     // 好友ID
                     text_haoyou_id = user2_id;
-                    // 关闭计时器
-                    clearInterval(intervalId);
-                    // 开启计时器
-                    jsq();
+
+                    if (user2_id != jsqid) {
+                        jsqid = user2_id;
+                        // 关闭计时器
+                        clearInterval(intervalId);
+                        // 开启计时器
+                        jsq();
+                    }
                 })
 
                 // 好友向我聊天记录获取失败进行提示信息
@@ -114,7 +119,6 @@ var faSong = function () {
             showPrompt("发送失败未能请求到服务器", "red", 1000);
         })
 }
-
 
 
 
