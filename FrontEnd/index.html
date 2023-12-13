@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>登录&注册</title>
-    <link rel="stylesheet" href="./index/style.css"><input type="hidden" id="_w_simile" data-inspect-config="3">
+    <link rel="stylesheet" href="./index/style.css">
+    <link rel="shortcut icon" href="./icon.ico" />
     <script src="./js/jquery.min.js"></script>
     <script src="./js/tanchuang.js"></script>
     <script src="./js/axios.js"></script>
@@ -20,15 +21,6 @@
                     <form>
                         <input type="text" placeholder="用户名" id="z_zh">
                         <input type="password" placeholder="密码" id="z_mm">
-                        <div>
-                            <img src="https://39.98.109.91/captcha/get" onclick="f(this)" style="width: 100px;">
-                            <script>
-                                var f = function (elem) {
-                                    elem.src = "https://39.98.109.91/captcha/get?" + Math.random();
-                                }
-                            </script>
-                            <input type="text" style="width: 100px;">
-                        </div>
                     </form>
                     <button class="button submit" onclick="zcBut()">创建账号</button>
                 </div>
@@ -37,15 +29,6 @@
                     <form class="more-padding">
                         <input type="text" placeholder="用户名" id="d_zh">
                         <input type="password" placeholder="密码" id="d_mm">
-                        <div>
-                            <img src="https://39.98.109.91/captcha/get" onclick="f(this)" style="width: 100px;">
-                            <script>
-                                var f = function (elem) {
-                                    elem.src = "https://39.98.109.91/captcha/get?" + Math.random();
-                                }
-                            </script>
-                            <input type="text" style="width: 100px;" id="d_yzm">
-                        </div>
                     </form>
                     <button class="button submit" onclick="dlBut()">登录</button>
                 </div>
