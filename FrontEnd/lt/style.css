@@ -4,9 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
-}
 
 #wai,
 #dengdai {
@@ -20,7 +17,6 @@ body {
     margin-top: -250px;
     margin-left: -500px;
     background-image: url("img/水墨山水.jpg");
-    /*background-image: linear-gradient(to top, black 0%, white 1%, #e5e3e3 100%);*/
 }
 
 #list {
@@ -81,7 +77,7 @@ body {
     text-align: center;
     list-style: none;
     margin: 5px 10px;
-    /*background-color: #8d8d8d;*/
+    /* background-color: #8d8d8d; */
     border-radius: 10px;
     font-family: "华文行楷", serif;
 }
@@ -101,7 +97,7 @@ body {
 #info {
     padding: 10px;
     height: 400px;
-    /*background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%);*/
+    /* background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%); */
     border-top-right-radius: 10px;
     overflow: auto;
 }
@@ -193,7 +189,7 @@ body {
 }
 
 
-.addFriend-frame img{
+.addFriend-frame img {
     width: 200px;
     height: 300px;
     position: absolute;

@@ -14,7 +14,10 @@ $("#signin").click(function () {
 // 登录模块
 var dlBut = function () {
     // 先使用验证码进行人机验证
-    axios.get(AjaxURL + "/captcha/verify/" + document.getElementById("d_yzm").value)
+    axios({
+        url: AjaxURL + "/captcha/verify/" + document.getElementById("d_yzm").value,
+        withCredentials: true
+    })
 
         .then(function (responseyzm) {
             if (responseyzm.data) {
