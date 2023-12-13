@@ -19,14 +19,15 @@ body {
     left: 50%;
     margin-top: -250px;
     margin-left: -500px;
-    background-image: linear-gradient(to top, #fad0c4 0%, #fad0c4 1%, #ffd1ff 100%);
+    background-image: url("img/水墨山水.jpg");
+    /*background-image: linear-gradient(to top, black 0%, white 1%, #e5e3e3 100%);*/
 }
 
 #list {
     width: 198px;
     height: 100%;
     overflow: auto;
-    border-right: 3px solid #a6c1ee;
+    border-right: 3px solid #000000;
     float: left;
 }
 
@@ -38,7 +39,6 @@ body {
     width: 195px;
     height: 50px;
     position: absolute;
-    background-color: #fbc2eb;
     border-top-left-radius: 10px;
 }
 
@@ -49,15 +49,18 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: 18px;
+    font-family: "华文行楷", serif;
 }
 
 #addFriend-but {
     width: 30px;
     height: 30px;
     margin-top: 10px;
-    background-color: #a782ff;
-    border-color: #ffd1ff;
+    background-color: #595757;
+    border-color: #000000;
     font-size: 20px;
+    font-family: "华文行楷", serif;
     color: white;
 }
 
@@ -78,12 +81,13 @@ body {
     text-align: center;
     list-style: none;
     margin: 5px 10px;
-    background-color: aquamarine;
+    /*background-color: #8d8d8d;*/
     border-radius: 10px;
+    font-family: "华文行楷", serif;
 }
 
 #list li:hover {
-    background-color: #a782ff;
+    /*background-color: #a782ff;*/
 }
 
 #information {
@@ -97,22 +101,22 @@ body {
 #info {
     padding: 10px;
     height: 400px;
-    background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%);
+    /*background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%);*/
     border-top-right-radius: 10px;
     overflow: auto;
 }
 
 .you {
     float: left;
-    border-color: white;
-    background-color: rgba(255, 255, 255, 0.3);
+    /*border-color: white;*/
+    /*background-color: rgba(255, 255, 255, 0.3);*/
 }
 
 .me {
     text-align: right;
     float: right;
-    border-color: greenyellow;
-    background-color: rgba(172, 255, 47, 0.3);
+    /*border-color: greenyellow;*/
+    /*background-color: rgba(172, 255, 47, 0.3);*/
 }
 
 .you,
@@ -154,10 +158,10 @@ body {
     position: absolute;
     bottom: 13px;
     right: 25px;
-    background-color: #fbc2eb;
-    border-color: #00000088;
-    border-top-color: #a18cd1;
-    border-left-color: #a18cd1;
+    /*background-color: #fbc2eb;*/
+    /*border-color: #00000088;*/
+    /*border-top-color: #a18cd1;*/
+    /*border-left-color: #a18cd1;*/
 }
 
 #dengdai {
@@ -167,34 +171,55 @@ body {
 }
 
 .addFriend-frame {
-    width: 500px;
-    height: 300px;
-    background-color: #a6c1ee;
+    width: 550px;
+    height: 350px;
+    background-image: linear-gradient(to top, black 0%, #ffffff 2%, #888787 100%);
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 57%;
     margin-top: -150px;
     margin-left: -250px;
-    border: 2px dashed #ffd1ff;
     border-radius: 10px;
     text-align: center;
     padding-top: 20px;
     display: none;
 }
 
-.addFriend-frame input {
-    width: 200px;
-    border: none;
-    background-color: #a6c1ee;
-    border-bottom: 3px solid #7faeff;
-    outline: none;
+.addFriend-frame span {
+    font-size: 30px;
+    font-family: "华文行楷", serif;
+    font-weight: 600;
+
 }
+
+
+.addFriend-frame img{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    left: -20px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.addFriend-frame input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    font-family: "华文行楷", serif;
+}
+
+
 
 .addFriend-frame>div>button {
     width: 50px;
-    border-color: #a18cd1;
-    background-color: #7faeff;
-    color: white;
+    height: 30px;
+    background-image: linear-gradient(to top, black 0%, #3a3a3a 2%, #a4a4a4 100%);
+    color: #000000;
+    font-family: "华文隶书", serif;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .addFriend-frame>button {
@@ -206,14 +231,26 @@ body {
     font-size: 20px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    color: red;
 }
+
+.addFriend-frame button img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+}
+
+
+
 
 #friendApply {
     width: 400px;
     height: 200px;
     margin: 10px auto;
-    border: 3px dashed #a18cd1;
+    /*border: 3px dashed #a18cd1;*/
     border-radius: 10px;
     position: relative;
 }
@@ -222,9 +259,11 @@ body {
     width: 100%;
     height: 40px;
     line-height: 40px;
-    border-bottom: 2px solid #a18cd1;
     font-weight: 600;
+    font-family: "华文行楷", serif;
+    font-size: 20px;
 }
+
 
 #friendApplyContentFrame {
     overflow: auto;
@@ -236,7 +275,7 @@ body {
     height: 30px;
     line-height: 30px;
     padding: 0 20px;
-    border-bottom: 2px solid #a782ff;
+    /*border-bottom: 2px solid #a782ff;*/
 }
 
 #friendApplyContentFrame span {
@@ -248,8 +287,8 @@ body {
     margin-top: 2px;
     width: 80px;
     height: 25px;
-    background-color: #7faeff;
-    border-color: #a782ff;
+    /*background-color: #7faeff;*/
+    /*border-color: #a782ff;*/
 }
 
 #requestFriend {
@@ -258,7 +297,7 @@ body {
     border-radius: 8px;
     width: 395.5px;
     height: 195.5px;
-    background-color: #7faeff;
+    /*background-color: #7faeff;*/
     display: none;
 }
 
@@ -275,7 +314,7 @@ body {
 }
 
 #friendInformationDisplay {
-    border-bottom: 1px solid #000;
+    /*border-bottom: 1px solid #000;*/
     position: absolute;
     top: 10px;
     left: 5px;
@@ -307,12 +346,12 @@ body {
     border-radius: 10px;
     padding: 5px;
     margin-top: 60px;
-    background-color: #ffffff73;
+    /*background-color: #ffffff73;*/
 }
 
 #greetings-but {
     width: 100%;
-    background-color: #a18cd1;
-    border-color: #a782ff;
+    /*background-color: #a18cd1;*/
+    /*border-color: #a782ff;*/
     border-radius: 10px;
 }
