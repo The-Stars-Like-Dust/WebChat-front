@@ -31,6 +31,16 @@
             </div>
             <ul id="friend">
             </ul>
+            <img src="./lt/img/太极.png" title="点击刷新" onclick="shuaxin(this)" id="djsx">
+            <script>
+                let angle = 0;
+                var shuaxin = function (elem) {
+                    angle += 360;
+                    elem.style.transform = `rotate(${angle}deg)`;
+                    addhaoyouList();
+                    document.getElementById("information").style.display = "none";
+                }
+            </script>
         </div>
         <!-- 加好友 -->
         <div class="addFriend-frame">

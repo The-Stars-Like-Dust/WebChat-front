@@ -53,13 +53,12 @@ var chattingRecords = function (user2_id) {
                     for (let i = 0; i < data2.length; i++) {
                         data1[data1.length] = data2[i];
                     }
-
                     // 清空消息列表
                     document.getElementById("info").remove();
                     document.getElementById("information").innerHTML =
                         '<div id="infoConfig">' +
-                        '<span></span>' +
-                        '<button>删除好友</button>' +
+                        '<span>' + data1[0].user2.userName + '</span>' +
+                        '<button id="remove' + user2_id + '">删除好友</button>' +
                         '</div>' +
                         '<div id="info"> </div>' +
                         '<div id="input_from">' +
@@ -71,8 +70,26 @@ var chattingRecords = function (user2_id) {
                         '</div >'
 
                     // 进行删除好友操作
-                    document.querySelector("#infoConfig>button").oclick = function () {
-                        console.log(user2_id);
+                    document.getElementById("remove" + user2_id).onclick = function () {
+                        if (prompt("这是不可逆的操作\n如果确认删除，请输入\"删除\"") == "删除") {
+                            axios.post(AjaxURL + "/ins/deleteFriend", {
+                                id1: userNameId,
+                                id2: user2_id
+                            })
+                                .then(function (response) {
+                                    if (response.data == "success") {
+                                        showPrompt("删除成功", "greenyellow", 500);
+                                        // 清除好友列表
+                                        document.getElementById("id" + user2_id).remove();
+                                        document.getElementById("information").style.display = "none";
+                                    } else {
+                                        showPrompt("删除失败", "red", 500);
+                                    }
+                                })
+                                .error(function (error) {
+                                    console.log("删除请求好友错误");
+                                })
+                        }
                     }
 
                     // 调用函数渲染页面
