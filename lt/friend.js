@@ -40,6 +40,7 @@ document.getElementById("searchFriend").onclick = function () {
                 showPrompt("该好友请求正在待处理", "red", 3000);
             } else {
                 document.getElementById("requestFriendName").innerHTML = rdata.userName;
+                document.getElementById("requestFriendName").title = rdata.userName;
                 document.getElementById("requestFriendID").innerHTML = rdata.id;
                 document.getElementById("requestFriend").style.display = 'block';
             }
@@ -97,8 +98,10 @@ var qingqiuhaoyouqingqiu = function () {
                     let span = document.createElement("span");
                     let but1 = document.createElement("button");
                     let but2 = document.createElement("button");
+                    let but3 = document.createElement("button");
 
                     span.textContent = rdata[i].pUsers.userName;
+                    span.title = rdata[i].pUsers.userName;
                     but1.className = "friendApplyContent-but";
                     but1.textContent = "同意";
                     but1.addEventListener('click', function () {
@@ -112,7 +115,13 @@ var qingqiuhaoyouqingqiu = function () {
                         div.remove();
                     })
 
+                    but3.textContent = "弹出问候语";
+                    but3.addEventListener('click', function () {
+                        showPrompt(rdata[i].firstMessage, "greenyellow", 3000);
+                    })
+
                     div.appendChild(span);
+                    div.appendChild(but3);
                     div.appendChild(but1);
                     div.appendChild(but2);
                     dgid.appendChild(div);
@@ -137,6 +146,8 @@ document.querySelector("#close-addFriend").onclick = function () {
     document.getElementsByClassName("addFriend-frame")[0].style.display = "none";
     // 关闭计时器
     clearInterval(intervalAddhaoyou);
+    // 清空里面存的好友名
+    haoyouListTable = [];
 }
 
 // 点击错号关闭我申请好友页面

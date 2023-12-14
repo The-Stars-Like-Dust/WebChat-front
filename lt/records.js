@@ -57,6 +57,10 @@ var chattingRecords = function (user2_id) {
                     // 清空消息列表
                     document.getElementById("info").remove();
                     document.getElementById("information").innerHTML =
+                        '<div id="infoConfig">' +
+                        '<span></span>' +
+                        '<button>删除好友</button>' +
+                        '</div>' +
                         '<div id="info"> </div>' +
                         '<div id="input_from">' +
                         '<form>' +
@@ -65,6 +69,11 @@ var chattingRecords = function (user2_id) {
                         '<input type="button" onclick="faSong()" value="发送">' +
                         '</form>' +
                         '</div >'
+
+                    // 进行删除好友操作
+                    document.querySelector("#infoConfig>button").oclick = function () {
+                        console.log(user2_id);
+                    }
 
                     // 调用函数渲染页面
                     chattingRecordsXR(data1);

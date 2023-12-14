@@ -77,13 +77,13 @@
     text-align: center;
     list-style: none;
     margin: 5px 10px;
-    /* background-color: #8d8d8d; */
+    background-color: #e8e8e86c;
     border-radius: 10px;
-    font-family: "华文行楷", serif;
+    font-family: "KaiTi", serif;
 }
 
 #list li:hover {
-    /*background-color: #a782ff;*/
+    background-color: #bebebe98;
 }
 
 #information {
@@ -94,25 +94,38 @@
     display: none;
 }
 
+#infoConfig {
+    height: 50px;
+    border-bottom: 1px solid #999999;
+}
+
+#infoConfig>span {}
+
+#infoConfig>button {
+    width: 80px;
+    height: 30px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
 #info {
     padding: 10px;
-    height: 400px;
-    /* background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%); */
+    height: 350px;
     border-top-right-radius: 10px;
     overflow: auto;
 }
 
 .you {
     float: left;
-    /*border-color: white;*/
-    /*background-color: rgba(255, 255, 255, 0.3);*/
+    background-color: #e8e8e86c;
 }
 
 .me {
     text-align: right;
     float: right;
-    /*border-color: greenyellow;*/
-    /*background-color: rgba(172, 255, 47, 0.3);*/
+    background-color: #e8e8e86c;
 }
 
 .you,
@@ -154,10 +167,6 @@
     position: absolute;
     bottom: 13px;
     right: 25px;
-    /*background-color: #fbc2eb;*/
-    /*border-color: #00000088;*/
-    /*border-top-color: #a18cd1;*/
-    /*border-left-color: #a18cd1;*/
 }
 
 #dengdai {
@@ -182,10 +191,12 @@
 }
 
 .addFriend-frame span {
-    font-size: 30px;
-    font-family: "华文行楷", serif;
+    font-family: "KaiTi", serif;
     font-weight: 600;
-
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 20px;
 }
 
 
@@ -195,7 +206,7 @@
     position: absolute;
     left: -20px;
     opacity: 0.5;
-    z-index: 1;
+    z-index: 0;
 }
 
 .addFriend-frame input[type="text"] {
@@ -203,7 +214,7 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 200px;
-    font-family: "华文行楷", serif;
+    font-family: "KaiTi", serif;
 }
 
 
@@ -212,8 +223,8 @@
     width: 50px;
     height: 30px;
     background-image: linear-gradient(to top, black 0%, #3a3a3a 2%, #a4a4a4 100%);
-    color: #000000;
-    font-family: "华文隶书", serif;
+    color: white;
+    font-family: "KaiTi", serif;
     font-size: 18px;
     font-weight: 600;
 }
@@ -246,7 +257,6 @@
     width: 400px;
     height: 200px;
     margin: 10px auto;
-    /*border: 3px dashed #a18cd1;*/
     border-radius: 10px;
     position: relative;
 }
@@ -271,10 +281,11 @@
     height: 30px;
     line-height: 30px;
     padding: 0 20px;
-    /*border-bottom: 2px solid #a782ff;*/
 }
 
 #friendApplyContentFrame span {
+    width: 100px;
+    text-align: left;
     float: left;
 }
 
@@ -283,8 +294,7 @@
     margin-top: 2px;
     width: 80px;
     height: 25px;
-    /*background-color: #7faeff;*/
-    /*border-color: #a782ff;*/
+    border-radius: 10px;
 }
 
 #requestFriend {
@@ -293,8 +303,9 @@
     border-radius: 8px;
     width: 395.5px;
     height: 195.5px;
-    /*background-color: #7faeff;*/
+    background-color: #999999;
     display: none;
+    border: 3px solid #999999;
 }
 
 #close-requestFriend {
@@ -310,7 +321,6 @@
 }
 
 #friendInformationDisplay {
-    /*border-bottom: 1px solid #000;*/
     position: absolute;
     top: 10px;
     left: 5px;
@@ -319,9 +329,13 @@
     height: 45px;
 }
 
+#friendInformationDisplay>p {
+    white-space: nowrap;
+}
+
 .friendInformationDisplayLeft {
     display: inline-block;
-    width: 50px;
+    width: 70px;
     text-align: right;
 }
 
@@ -342,12 +356,9 @@
     border-radius: 10px;
     padding: 5px;
     margin-top: 60px;
-    /*background-color: #ffffff73;*/
 }
 
 #greetings-but {
     width: 100%;
-    /*background-color: #a18cd1;*/
-    /*border-color: #a782ff;*/
     border-radius: 10px;
 }

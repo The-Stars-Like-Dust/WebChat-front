@@ -30,7 +30,7 @@ var friendList = function (friendList) {
     listAdd.innerHTML = "";
     // 先把好友列表渲染上
     for (let i = 0; i < friendList.length; i++) {
-        listAdd.innerHTML += '<li class="haoyou-li" id="id' + friendList[i].id + '">' + friendList[i].userName + '</li>';
+        listAdd.innerHTML += '<li class="haoyou-li" titlt = "' + friendList[i].userName + '" id="id' + friendList[i].id + '">' + friendList[i].userName + '</li>';
     }
     // 吧所有的好友进行点击事件注册
     for (let i = 0; i < friendList.length; i++) {
@@ -45,6 +45,7 @@ var friendList = function (friendList) {
 var addContent = function (userName) {
     // 更新账号
     document.getElementById("nichengs").innerText = userName;
+    document.getElementById("nichengs").title = userName;
     document.getElementById("zhanghao").innerText = userNameId;
     addhaoyouList();
     // 显示界面
