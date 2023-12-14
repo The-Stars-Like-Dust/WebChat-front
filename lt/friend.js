@@ -74,12 +74,15 @@ var trueFalseFriendRequest = function (off, id, obj) {
 }
 // 里面存放的是申请好友的名称
 var haoyouListTable = [];
+var haoyouListBoolean = true;
 // 添加好友点击打开并发送请求有谁向我发送好友申请
 document.getElementById("addFriend-but").onclick = function () {
     document.getElementsByClassName("addFriend-frame")[0].style.display = "block";
     document.getElementById("friendApplyContentFrame").innerHTML = "";
     qingqiuhaoyouqingqiu();
-    haoyoushenqingfor();
+    if (haoyouListBoolean)
+        haoyoushenqingfor();
+    haoyouListBoolean = false;
 }
 // 请求好友向我发送的好友申请
 var qingqiuhaoyouqingqiu = function () {
@@ -148,6 +151,8 @@ document.querySelector("#close-addFriend").onclick = function () {
     clearInterval(intervalAddhaoyou);
     // 清空里面存的好友名
     haoyouListTable = [];
+    // 开启开关能够进行计时器
+    haoyouListBoolean = true;
 }
 
 // 点击错号关闭我申请好友页面

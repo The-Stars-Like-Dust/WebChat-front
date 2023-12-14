@@ -38,25 +38,22 @@ var dlBut = function () {
 
 // 注册模块
 var zcBut = function () {
-
-    if (responseyzm.data) {
-        axios.post(AjaxURL + "/ins/user", {
-            userName: document.getElementById("z_zh").value,
-            password: document.getElementById("z_mm").value
+    axios.post(AjaxURL + "/ins/user", {
+        userName: document.getElementById("z_zh").value,
+        password: document.getElementById("z_mm").value
+    })
+        // 执行注册成功进行跳转
+        .then(function (response) {
+            if (response.data == 'lengthError') {
+                showPrompt("注册失败，密码和账号要求 6-20 位之间", "red", 3000);
+            } else if (response.data == 'existError') {
+                showPrompt("注册失败，账号已存在", "red", 3000);
+            } else {
+                showPrompt("注册成功", "greenyellow", 3000);
+            }
         })
-            // 执行注册成功进行跳转
-            .then(function (response) {
-                if (response.data == 'lengthError') {
-                    showPrompt("注册失败，密码和账号要求 6-20 位之间", "red", 3000);
-                } else if (response.data == 'existError') {
-                    showPrompt("注册失败，账号已存在", "red", 3000);
-                } else {
-                    showPrompt("注册成功", "greenyellow", 3000);
-                }
-            })
-            // 注册失败进行提示信息
-            .catch(function (error) {
-                showPrompt("请求注册失败", "red", 3000);
-            })
-    }
+        // 注册失败进行提示信息
+        .catch(function (error) {
+            showPrompt("请求注册失败", "red", 3000);
+        })
 }

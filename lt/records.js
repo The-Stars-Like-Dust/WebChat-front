@@ -137,7 +137,11 @@ var faSong = function () {
         // 执行成功调用渲染好友向我聊天记录函数
         .then(function (response) {
             // 发送成功
-            showPrompt("发送成功", "greenyellow", 500);
+            if (response.data == "lengthError") {
+                showPrompt("发送失败，消息为空", "red", 1000);
+            } else {
+                showPrompt("发送成功", "greenyellow", 500);
+            }
         })
 
         // 发送失败
