@@ -46,7 +46,7 @@ var addContent = function (userName) {
     // 用于保证账号活度的计时器
     intervalAddhaoyou = setInterval(() => {
         axios.post(AjaxURL + "/MaintainYourLogin", "id=" + userNameId)
-    }, 8000);
+    }, 5000);
     // 更新账号
     document.getElementById("nichengs").innerText = userName;
     document.getElementById("nichengs").title = userName;

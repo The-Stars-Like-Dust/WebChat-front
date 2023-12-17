@@ -46,6 +46,16 @@
             </div>
         </div>
     </div>
+    <script>
+        // 另一种写法
+        if (
+            navigator.userAgent.match(/Mobi/i) ||
+            navigator.userAgent.match(/Android/i) ||
+            navigator.userAgent.match(/iPhone/i)
+        ) {
+            document.body.innerHTML = "不支持手机端，请另寻他处";
+        }
+    </script>
     <script src="./index/script.js"></script>
 </body>
 
