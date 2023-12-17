@@ -23,8 +23,10 @@ var dlBut = function () {
             const data = response.data;
 
             // 判断是否返回成功
-            if (typeof (date) == "string" || data == 'passwordError') {
+            if (data == 'passwordError') {
                 showPrompt("登录失败,可能是账号密码错误", "red", 3000);
+            } else if (data == '') {
+                showPrompt("登录失败,该账号已经登录", "red", 3000);
             } else {
                 showPrompt("登录成功", "greenyellow", 3000);
                 window.location.href = "/lt.html?uuid=" + data;
