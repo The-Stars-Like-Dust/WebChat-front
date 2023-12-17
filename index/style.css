@@ -8,7 +8,8 @@
 }
 
 .welcome {
-    background: #f6f6f6;
+    background-image: url("img/风景.png");
+    background-size: cover;
     width: 650px;
     height: 415px;
     position: absolute;
@@ -21,7 +22,9 @@
     position: absolute;
     top: -10%;
     left: 5%;
-    background: #EAC7CC;
+    /* background: #EAC7CC; */
+    background-image: url("img/竹子.png");
+    background-size: 320px 500px;
     width: 320px;
     height: 500px;
     border-radius: 5px;
@@ -51,24 +54,26 @@
 }
 
 h1 {
-    font-family: "Open Sans", sans-serif;
+    
     text-align: center;
     margin-top: 95px;
     text-transform: uppercase;
-    color: #f6f6f6;
+    color: #000000;
     font-size: 2em;
-    letter-spacing: 8px
+    letter-spacing: 8px;
+    font-family: "华文行楷";
 }
 
 .title {
     font-family: "Lora", serif;
-    color: #8E9AAF;
+    color: #000000;
     font-size: 1.8em;
     line-height: 1.1em;
     letter-spacing: 3px;
     text-align: center;
     font-weight: 300;
-    margin-top: 20%
+    margin-top: 20%;
+    font-family: '华文行楷';
 }
 
 .desc {
@@ -77,19 +82,20 @@ h1 {
 
 .account {
     margin-top: 45%;
-    font-size: 10px
 }
 
 p {
-    font-family: "Open Sans", sans-serif;
-    font-size: .7em;
     letter-spacing: 2px;
-    color: #8E9AAF;
-    text-align: center
+    color: #000000;
+    text-align: center;
+    font-size: 14px;
+    font-family: '华文行楷';
 }
 
 span {
-    color: #EAC7CC
+    color: #000000;
+    font-size: 18px;
+    font-family: '华文行楷';
 }
 
 .flower {
@@ -122,16 +128,16 @@ button {
 }
 
 button:hover {
-    background: #EAC7CC;
-    color: #f6f6f6;
+    background-image: linear-gradient(to top,  #888787 0%, #ffffff 0%, black 100%);
+    color: #ffffff;
     transition: background-color 1s ease-out
 }
 
 .button {
     margin-top: 3%;
-    background: #f6f6f6;
-    color: #ce7d88;
-    border: solid 1px #EAC7CC
+    background-image: linear-gradient(to top, black 0%, #ffffff 0%, #888787 100%);
+    color: #000000;
+    font-family: '华文行楷';
 }
 
 form {
@@ -156,35 +162,35 @@ form {
 .submit {
     margin-top: 25px;
     padding: 12px;
-    border-color: #ce7d88
+    border-color: #000000
 }
 
 .submit:hover {
-    background: #CBC0D3;
-    border-color: #bfb1c9
+    background-image: linear-gradient(to top,  #888787 0%, #ffffff 0%, black 100%);
+    border-color: #000000
 }
 
 input {
-    background: #EAC7CC;
+    background-image: linear-gradient(to top, black  0%, #ffffff 0%, #888787 100%);
     width: 65%;
-    color: #ce7d88;
+    /* color: #000000; */
     border: 0;
     border-bottom: 1px solid rgba(246, 246, 246, 0.5);
     padding: 9px;
-    margin: 7px
+    margin: 7px;
+    font-family: "华文行楷";
 }
 
 input::placeholder {
-    color: #f6f6f6;
+    /* color: #050505; */
     letter-spacing: 2px;
     font-size: 1.3em;
     font-weight: 100
 }
 
 input:focus {
-    color: #ce7d88;
     outline: 0;
-    border-bottom: 1.2px solid rgba(206, 125, 136, 0.7);
+    border-bottom: 1.2px solid rgba(247, 247, 247, 0.7);
     font-size: 1em;
     transition: .8s all ease
 }
@@ -193,27 +199,3 @@ input:focus::placeholder {
     opacity: 0
 }
 
-label {
-    font-family: "Open Sans", sans-serif;
-    color: #ce7d88;
-    font-size: .8em;
-    letter-spacing: 1px
-}
-
-.checkbox {
-    display: inline;
-    white-space: nowrap;
-    position: relative;
-    left: -62px;
-    top: 5px
-}
-
-input[type=checkbox] {
-    width: 7px;
-    background: #ce7d88
-}
-
-.checkbox input[type=checkbox]:checked+label {
-    color: #ce7d88;
-    transition: .5s all ease
-}
