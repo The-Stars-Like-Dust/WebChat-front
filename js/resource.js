@@ -1,5 +1,5 @@
 // 请求地址 —— 不加杠
-var AjaxURL = "https://39.98.109.91";
+var AjaxURL = "https://www.xiaoxve.cn";
 // 现在是在谁的聊天框的ID
 var text_haoyou_id = null;
 // 我的ID
