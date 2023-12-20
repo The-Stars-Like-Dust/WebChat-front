@@ -22,8 +22,7 @@
     position: absolute;
     top: -10%;
     left: 5%;
-    /* background: #EAC7CC; */
-    background-image: url("img/竹子.png");
+    background-image: url("img/竖.jpg");
     background-size: 320px 500px;
     width: 320px;
     height: 500px;
@@ -54,14 +53,14 @@
 }
 
 h1 {
-    
+
     text-align: center;
     margin-top: 95px;
     text-transform: uppercase;
     color: #000000;
     font-size: 2em;
     letter-spacing: 8px;
-    font-family: "华文行楷";
+    font-family: "KaiTi";
 }
 
 .title {
@@ -73,7 +72,7 @@ h1 {
     text-align: center;
     font-weight: 300;
     margin-top: 20%;
-    font-family: '华文行楷';
+    font-family: 'KaiTi';
 }
 
 .desc {
@@ -89,13 +88,13 @@ p {
     color: #000000;
     text-align: center;
     font-size: 14px;
-    font-family: '华文行楷';
+    font-family: 'KaiTi';
 }
 
 span {
     color: #000000;
     font-size: 18px;
-    font-family: '华文行楷';
+    font-family: 'KaiTi';
 }
 
 .flower {
@@ -128,7 +127,7 @@ button {
 }
 
 button:hover {
-    background-image: linear-gradient(to top,  #888787 0%, #ffffff 0%, black 100%);
+    background-image: linear-gradient(to top, #888787 0%, #ffffff 0%, rgb(142, 142, 142) 100%);
     color: #ffffff;
     transition: background-color 1s ease-out
 }
@@ -137,7 +136,9 @@ button:hover {
     margin-top: 3%;
     background-image: linear-gradient(to top, black 0%, #ffffff 0%, #888787 100%);
     color: #000000;
-    font-family: '华文行楷';
+    font-family: 'KaiTi';
+    font-size: 17px;
+    color: rgb(168, 140, 140);
 }
 
 form {
@@ -166,12 +167,12 @@ form {
 }
 
 .submit:hover {
-    background-image: linear-gradient(to top,  #888787 0%, #ffffff 0%, black 100%);
+    background-image: linear-gradient(to top, #888787 0%, #ffffff 0%, rgb(141, 141, 141) 100%);
     border-color: #000000
 }
 
 input {
-    background-image: linear-gradient(to top, black  0%, #ffffff 0%, #888787 100%);
+    background-image: linear-gradient(to top, black 0%, #ffffff 0%, #888787 100%);
     width: 65%;
     /* color: #000000; */
     border: 0;
@@ -198,4 +199,3 @@ input:focus {
 input:focus::placeholder {
     opacity: 0
 }
-
